@@ -14,14 +14,14 @@ def get_todo_list(request):
 
 def add_item(request):
     if request.method == "POST":
-        form = ItemForm(request.POST)
-        if form.is_valid():
+        form = ItemForm(request.POST) # populates form from post request
+        if form.is_valid(): # this compares posted data with Django model setup
             form.save()
             return redirect('get_todo_list')
     form = ItemForm()
     context = {
         'form': form
-    }
+    } # the helps render an empty form for the add item template
     return render(request, "todo/add_item.html", context)
 
 
@@ -41,7 +41,7 @@ def edit_item(request, item_id):
 
 def toggle_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    item.done = not item.done 
+    item.done = not item.done # this changes the value to the opposite
     item.save()
     return redirect('get_todo_list')
 

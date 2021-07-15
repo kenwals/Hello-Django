@@ -10,7 +10,7 @@
     <h1>Add a Todo Item:</h1>
     <form method="post" action="add">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_p }} <!-- as_p makes the form elements have paragraph tags -->
         <div>
             <p>
             <button type="submit">Add Item</button>
